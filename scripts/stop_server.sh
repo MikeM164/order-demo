@@ -21,3 +21,5 @@ else
 fi
 
 echo "Application stopped."
+
+exit 0  # Always return success to prevent CodeDeploy failure
