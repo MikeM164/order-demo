@@ -1,13 +1,13 @@
 #!/bin/bash
+set -e
 
-JAR_PATH="/home/ec2-user/order-demo/order-demo.jar"
+APP_NAME="order-demo"
+JAR_NAME=$(ls /opt/$APP_NAME/*.jar | head -n 1)
+LOG_FILE="/opt/$APP_NAME/$APP_NAME.log"
 
-echo "Starting Spring Boot app from $JAR_PATH..."
+echo "Starting Spring Boot application..."
 
-if [ -f "$JAR_PATH" ]; then
-    nohup java -jar "$JAR_PATH" > /home/ec2-user/order-demo/order-demo.log 2>&1 &
-    echo "Application started!"
-else
-    echo "ERROR: $JAR_PATH not found!"
-    exit 1
-fi
+# Run the jar in the background
+nohup java -jar "$JAR_NAME" > "$LOG_FILE" 2>&1 &
+
+echo "Application started with PID $!"
