@@ -8,6 +8,7 @@ phases:
     commands:
       - echo Build completed successfully
 artifacts:
+  base-directory: .
   files:
     - target/order-demo.jar
     - scripts/***
