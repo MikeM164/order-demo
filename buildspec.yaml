@@ -15,7 +15,5 @@ phases:
 artifacts:
   base-directory: .
   files:
-    - target/order-demo.jar
-    - scripts/***
-    - appspec.yml
+      - deploy/**/*
   discard-paths: yes
