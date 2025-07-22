@@ -7,6 +7,11 @@ phases:
   post_build:
     commands:
       - echo Build completed successfully
+      - echo "Copying artifacts..."
+      - mkdir -p deploy
+      - cp target/order-demo.jar deploy/
+      - cp -r scripts deploy/
+      - cp appspec.yml deploy/
 artifacts:
   base-directory: .
   files:
