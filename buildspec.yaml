@@ -6,7 +6,7 @@ phases:
       - mvn clean package
   post_build:
     commands:
-      - echo Build completed successfully
+      - echo build completed successfully
 artifacts:
   files:
     - target/order-demo.jar
