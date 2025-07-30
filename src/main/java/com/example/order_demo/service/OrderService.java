@@ -11,10 +11,12 @@ import java.util.stream.Stream;
 @Service
 public class OrderService {
     public List<Order> getOrders() {
-        return Stream.of(new Order(101, "Mobile", 1, 100L),
+        return Stream.of(new Order(101, "Mobile Phone", 1, 1500L),
                         new Order(201, "Tablet", 3, 450L),
                         new Order(301, "Laptop", 2, 200L),
-                        new Order(401, "Headsets", 1, 50L))
+                        new Order(401, "Headsets", 1, 50L),
+                        new Order(501, "Monitor", 1, 180L),
+                        new Order(401, "Keyboard", 1, 120L))
                 .collect(Collectors.toList());
     }
 }
