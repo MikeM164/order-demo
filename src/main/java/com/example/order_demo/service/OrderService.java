@@ -14,7 +14,7 @@ public class OrderService {
         return Stream.of(new Order(101, "Mobile", 1, 100L),
                         new Order(201, "Tablet", 3, 450L),
                         new Order(301, "Laptop", 2, 200L),
-                        new Order(401, "Headsets", 1, 50L))
+                        new Order(401, "HeadSets", 1, 50L))
                 .collect(Collectors.toList());
     }
 }
