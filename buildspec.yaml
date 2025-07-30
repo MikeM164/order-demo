@@ -5,22 +5,31 @@ phases:
     runtime-versions:
       java: corretto21
     commands:
-      - mvn -v
+      - echo Installing zip...
+      - yum install -y zip
+
   pre_build:
     commands:
-      - echo "Cleaning previous builds..."
+      - echo Cleaning previous builds...
       - mvn clean
+
   build:
     commands:
-      - echo "Building application without tests..."
+      - echo Building the application...
       - mvn package -DskipTests
+
   post_build:
     commands:
-      - echo "Preparing deployment package..."
-      - mkdir -p deploy
+      - echo Preparing deployment artifacts...
+      - mkdir deploy
       - cp target/order-demo.jar deploy/
-      - cp -r appspec.yml scripts/ deploy/
-      - cd deploy && zip -r ../order-demo.zip . && cd ..
+      - cp appspec.yml deploy/
+      - cp -r scripts/ deploy/
+
 artifacts:
+  base-directory: deploy
   files:
-    - order-demo.zip
+    - appspec.yml
+    - order-demo.jar
+    - scripts/**/*
+
