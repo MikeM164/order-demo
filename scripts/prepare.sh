@@ -3,18 +3,18 @@ set -e
 
 echo "Preparing deployment environment..."
 
-# Ensure main app directory exists
+# Ensure app JAR directory exists
 mkdir -p /opt/order-demo-app
 
-# Cleanup previous JARs if needed
+# Cleanup previous JARs
 rm -f /opt/order-demo-app/*.jar
 
-# Ensure source code directory exists
-mkdir -p /opt/order-demo/src/main/java/com/example/order_demo/type
-
-# ⚠️ Clean the source code directory (or the full /opt/order-demo if safe)
-echo "Cleaning up previous source code directory..."
-rm -rf /opt/order-demo/*
+# 🔥 Clean previous source code to avoid file conflict
+if [ -d /opt/order-demo ]; then
+    echo "Cleaning /opt/order-demo to avoid file conflicts..."
+    rm -rf /opt/order-demo/*
+    rm -rf /opt/order-demo/.* 2>/dev/null || true  # also try removing hidden files like .gitignore
+fi
 
 # Optional: Ensure unzip is installed
 if ! command -v unzip &> /dev/null; then
