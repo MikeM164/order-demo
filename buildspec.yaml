@@ -5,8 +5,7 @@ phases:
     runtime-versions:
       java: corretto21
     commands:
-      - echo "Installing Maven..."
-      - apt-get update && apt-get install -y maven zip
+      - mvn -v
   pre_build:
     commands:
       - echo "Cleaning previous builds..."
