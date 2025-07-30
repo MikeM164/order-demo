@@ -1,13 +1,27 @@
 version: 0.2
+
 phases:
+  install:
+    runtime-versions:
+      java: corretto21
+    commands:
+      - echo "Installing Maven..."
+      - apt-get update && apt-get install -y maven zip
+  pre_build:
+    commands:
+      - echo "Cleaning previous builds..."
+      - mvn clean
   build:
     commands:
-      - echo Entered build phase ...
-      - mvn clean package
+      - echo "Building application without tests..."
+      - mvn package -DskipTests
   post_build:
     commands:
-      - echo build completed successfully
+      - echo "Preparing deployment package..."
+      - mkdir -p deploy
+      - cp target/order-demo.jar deploy/
+      - cp -r appspec.yml scripts/ deploy/
+      - cd deploy && zip -r ../order-demo.zip . && cd ..
 artifacts:
   files:
-    - target/order-demo.jar
-  discard-paths: yes
+    - order-demo.zip
